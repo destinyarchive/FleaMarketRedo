@@ -1,16 +1,14 @@
-public class Item{
-  public List<Item> itemList;
-  public Items(String name, double price){
-    private String itemName = name;
-    private double itemPrice = price;
+class Item{
+  private String itemName;
+  private double itemPrice;
+  private int quantity;
+  public Item(String name, double price, int quant){
+    itemName = name;
+    itemPrice = price;
+    quantity = quant;
   }
-  public String getItemName(){
-    return itemName;
-  }
-  public double getItemPrice(){
-    return itemPrice;
-  }
-  public String toString(){
-    return (itemName + "  -  $" + itemPrice);
-  }
+  public String getItemName(){return itemName;}
+  public double getItemPrice(){return itemPrice;}
+  public int getItemQuantity(){return quantity;}
+  public String toString(){return (itemName + "  -  " + quantity + "  -  $" + (itemPrice*quantity));}
 }
