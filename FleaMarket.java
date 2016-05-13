@@ -13,6 +13,7 @@ class FleaMarket{
     while (itemList.size() > 0){
       itemSum.add(itemList.remove(0));
     }
+    orderTotal = 0;
   }
   public void order(){//Runs one order
     String cont = "Y";

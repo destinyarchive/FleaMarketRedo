@@ -6,9 +6,9 @@ class FleaRunner{
     while (dayCont.equals("Y")){
       myMarket.order();
       Scanner user = new Scanner(System.in);
-      System.out.println("ANOTHER ORDER? (ANSWER Y OR N)\n");
+      System.out.println("\nANOTHER ORDER? (ANSWER Y OR N)\n");
       dayCont = user.nextLine();
     }
-    myMarket.daysOrders();
+    System.out.println(myMarket.daysOrders());
   }
 }
