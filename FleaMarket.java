@@ -15,6 +15,7 @@ class FleaMarket{
     }
     orderTotal = 0;
   }
+  
   public void order(){//Runs one order
     String cont = "Y";
     while ((cont.toUpperCase()).equals("Y")){
