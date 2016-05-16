@@ -1,0 +1,6 @@
+I need to start learning testing.
+Start by testing Item.java and then go more complex from there.
+
+I want to put in a GUI in order to make the program more useful.
+
+Biggest thing that needs to happen is the addition of sales tax.
