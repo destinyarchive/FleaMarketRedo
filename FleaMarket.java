@@ -15,7 +15,7 @@ class FleaMarket{
     }
     orderTotal = 0;
   }
-  
+
   public void order(){//Runs one order
     String cont = "Y";
     while ((cont.toUpperCase()).equals("Y")){
@@ -44,10 +44,10 @@ class FleaMarket{
 
   public String daysOrders(){//printout for end of day
     String result = "";
-    int totalSumItems = 0;
+    double totalSumItems = 0.0;
     for (int x = 0; x < itemSum.size(); x++){
       result += (itemSum.get(x)).getItemName() + " - $" + (itemSum.get(x)).getItemPrice() + "\n";
-      totalSumItems += (itemSum.get(x)).getItemPrice();
+      totalSumItems += (((itemSum.get(x)).getItemPrice())*(itemSum.get(x)).getItemQuantity());
     }
     result += "                                  Total Sum: $" + totalSumItems;
     return result;
