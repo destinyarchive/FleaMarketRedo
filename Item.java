@@ -10,5 +10,5 @@ class Item{
   public String getItemName(){return itemName;}
   public double getItemPrice(){return itemPrice;}
   public int getItemQuantity(){return quantity;}
-  public String toString(){return (itemName + "  -  " + quantity + "  -  $" + (itemPrice*quantity));}
+  public String toString(){return (itemName + "  -  " + quantity + "  -  $" + ((itemPrice*quantity)*1.06));}
 }

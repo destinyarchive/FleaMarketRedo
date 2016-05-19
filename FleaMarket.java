@@ -47,9 +47,10 @@ class FleaMarket{
     double totalSumItems = 0.0;
     for (int x = 0; x < itemSum.size(); x++){
       result += (itemSum.get(x)).getItemName() + " - $" + (itemSum.get(x)).getItemPrice() + "\n";
-      totalSumItems += (((itemSum.get(x)).getItemPrice())*(itemSum.get(x)).getItemQuantity());
+      totalSumItems += (((itemSum.get(x)).getItemPrice())*(itemSum.get(x)).getItemQuantity()*1.06);
     }
     result += "                                  Total Sum: $" + totalSumItems;
+    result += ("\n                                   Toatal tax is - $" + (totalSumItems -(totalSumItems/1.06)));
     return result;
   }
 
