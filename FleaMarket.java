@@ -1,17 +1,19 @@
 import java.util.*;
 class FleaMarket{
-  public List<Item> itemList;
-  private List<Item> itemSum;
+  public List<Item> orderList;
+  private List<Item> dayOrderList;
   private double orderTotal;
+  private double dayOrderSum;
+  private double orderTotalNet;
 
   public FleaMarket(){//initializes ArrayLists itemList and itemSum
-    itemList = new ArrayList<Item>();
-    itemSum = new ArrayList<Item>();
+    orderList = new ArrayList<Item>();
+    dayOrderList = new ArrayList<Item>();
   }
 
   public void clearList(){//clears itemList and adds all contents to itemSum
-    while (itemList.size() > 0){
-      itemSum.add(itemList.remove(0));
+    while (orderList.size() > 0){
+      dayOrderList.add(orderList.remove(0));
     }
     orderTotal = 0;
   }
@@ -24,33 +26,41 @@ class FleaMarket{
       System.out.println("CONTINUE? (please answer Y or N)");
       cont = userIn.nextLine();
     }
-
-    //Prints out a receipt
-    for (int c = 0; c < itemList.size(); c++){
-      Item temp = itemList.get(c);
-      System.out.println(temp.toString());
-    }
-    System.out.print("                             Order Total: $" + orderTotal);
+    dayOrderSum += orderTotal;
     clearList();
+    System.out.println(receipt());
+  }
+
+  private String receipt(){
+    //Prints out a receipt
+    String result = "";
+    for (int c = 0; c < orderList.size(); c++){
+      Item temp = orderList.get(c);
+      result += (temp.toString());
+      result += "\n";
+    }
+    result+=("                             Order Total: $" + orderTotal);
+    return result;
   }
 
   public void itemPurchase(){//creates a new item in itemList and adds to orderTotal
     String name = getName();
     double price = getPrice();
     int quant = getQuant();
-    itemList.add(new Item(name, price, quant));
-    orderTotal += (price*quant);
+    orderList.add(new Item(name, price, quant));
+    Item item = orderList.get(orderList.size() - 1);
+    orderTotal += (item.getItemTaxedPrice()*quant);
+    orderTotalNet += (price * quant);
   }
 
   public String daysOrders(){//printout for end of day
     String result = "";
     double totalSumItems = 0.0;
-    for (int x = 0; x < itemSum.size(); x++){
-      result += (itemSum.get(x)).getItemName() + " - $" + (itemSum.get(x)).getItemPrice() + "\n";
-      totalSumItems += (((itemSum.get(x)).getItemPrice())*(itemSum.get(x)).getItemQuantity()*1.06);
+    for (int x = 0; x < dayOrderList.size(); x++){
+      result += (dayOrderList.get(x)).getItemName() + " - $" + (dayOrderList.get(x)).getItemPrice() + "\n";
     }
-    result += "                                  Total Sum: $" + totalSumItems;
-    result += ("\n                                   Toatal tax is - $" + (totalSumItems -(totalSumItems/1.06)));
+    result += "                                  Total Sum: $" + dayOrderSum;
+    result += ("\n                                   Toatal tax is - $" + (dayOrderSum - orderTotalNet));
     return result;
   }
 
