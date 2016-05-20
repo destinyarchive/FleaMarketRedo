@@ -6,19 +6,19 @@ class FleaMarket{
   private double dayOrderSum;
   private double orderTotalNet;
 
-  public FleaMarket(){//initializes ArrayLists itemList and itemSum
+  public FleaMarket(){//initializes ArrayLists orderList and dayOrderList
     orderList = new ArrayList<Item>();
     dayOrderList = new ArrayList<Item>();
   }
 
-  public void clearList(){//clears itemList and adds all contents to itemSum
+  public void clearList(){//clears orderList into dayOrderList and sets orderTotal to 0
     while (orderList.size() > 0){
       dayOrderList.add(orderList.remove(0));
     }
     orderTotal = 0;
   }
 
-  public void order(){//Runs one order
+  public void order(){//loops over itemPurchase and outputs a call to receipt.
     String cont = "Y";
     while ((cont.toUpperCase()).equals("Y")){
       itemPurchase();
@@ -31,8 +31,7 @@ class FleaMarket{
     System.out.println(receipt());
   }
 
-  private String receipt(){
-    //Prints out a receipt
+  private String receipt(){//creates and returns a receipt
     String result = "";
     for (int c = 0; c < orderList.size(); c++){
       Item temp = orderList.get(c);
@@ -43,7 +42,7 @@ class FleaMarket{
     return result;
   }
 
-  public void itemPurchase(){//creates a new item in itemList and adds to orderTotal
+  public void itemPurchase(){//creates a new item in orderList and adds to orderTotal and orderTotalNet
     String name = getName();
     double price = getPrice();
     int quant = getQuant();
@@ -57,10 +56,11 @@ class FleaMarket{
     String result = "";
     double totalSumItems = 0.0;
     for (int x = 0; x < dayOrderList.size(); x++){
-      result += (dayOrderList.get(x)).getItemName() + " - $" + (dayOrderList.get(x)).getItemPrice() + "\n";
+      result += (dayOrderList.get(x)).toString() + "\n";
     }
-    result += "                                  Total Sum: $" + dayOrderSum;
+    result += "                                Total before tax  - $" + orderTotalNet;
     result += ("\n                                   Toatal tax is - $" + (dayOrderSum - orderTotalNet));
+    result += ("\n                                   Total Sum is  - $" + dayOrderSum);
     return result;
   }
 
