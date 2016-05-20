@@ -11,7 +11,7 @@ class Item{
     taxedPrice = addTax(price , .06);
   }
 
-  private double addTax(double price, double rate){return price + (price*rate);}
+  public double addTax(double price, double rate){return price + (price*rate);}
 
   public String getItemName(){return itemName;}
   public double getItemPrice(){return itemPrice;}
