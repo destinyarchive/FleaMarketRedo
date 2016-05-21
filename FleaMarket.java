@@ -12,6 +12,8 @@ class FleaMarket{
   }
 
   public void clearList(){//clears orderList into dayOrderList and sets orderTotal to 0
+    System.out.println(receipt());
+    dayOrderSum += orderTotal;
     while (orderList.size() > 0){
       dayOrderList.add(orderList.remove(0));
     }
@@ -19,16 +21,12 @@ class FleaMarket{
   }
 
   public void order(){//loops over itemPurchase and outputs a call to receipt.
-    String cont = "Y";
-    while ((cont.toUpperCase()).equals("Y")){
+    boolean cont = true;
+    while (cont){
       itemPurchase();
-      Scanner userIn = new Scanner(System.in);
-      System.out.println("CONTINUE? (please answer Y or N)");
-      cont = userIn.nextLine();
+      cont = InputOutput.getCont(System.in, "ANOTHER ITEM?");
     }
-    dayOrderSum += orderTotal;
     clearList();
-    System.out.println(receipt());
   }
 
   private String receipt(){//creates and returns a receipt
@@ -43,9 +41,9 @@ class FleaMarket{
   }
 
   public void itemPurchase(){//creates a new item in orderList and adds to orderTotal and orderTotalNet
-    String name = getName();
-    double price = getPrice();
-    int quant = getQuant();
+    String name = InputOutput.getName();
+    double price = InputOutput.getPrice();
+    int quant = InputOutput.getQuant();
     orderList.add(new Item(name, price, quant));
     Item item = orderList.get(orderList.size() - 1);
     orderTotal += (item.getItemTaxedPrice()*quant);
@@ -64,7 +62,7 @@ class FleaMarket{
     return result;
   }
 
-  public String getName(){//collects user data
+  /*public String getName(){//collects user data
     Scanner userIn = new Scanner(System.in);
     System.out.println("ENTER ITEM NAME");
     String userName = userIn.nextLine();
@@ -81,5 +79,5 @@ class FleaMarket{
     System.out.println("ENTER ITEM QUANTITY");
     int userQuant = Integer.parseInt(userIn.nextLine());
     return userQuant;
-  }
+  }*/
 }
