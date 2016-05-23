@@ -1,9 +1,11 @@
+import java.util.*;
+import java.io.*;
 class InputOutput{
-  public static String getName(InputStream in){//collects user data
+  public static String getBooth(InputStream in){//collects user data
     Scanner userIn = new Scanner(in);
-    System.out.println("ENTER ITEM NAME");
-    String userName = userIn.nextLine();
-    return userName;
+    System.out.println("ENTER BOOTH NUMBER");
+    String userBooth = userIn.nextLine();
+    return userBooth;
   }
   public static double getPrice(InputStream in){//collects user data
     Scanner userIn = new Scanner(in);
@@ -21,13 +23,12 @@ class InputOutput{
   public static boolean getCont(InputStream in, String message){
     Scanner userIn = new Scanner(in);
     System.out.println(message);
-    String userIn = userIn.nextLine();
-    if(userIn.toUpperCase().equals("Y")){
-      userCont = true;
+    String userCont = userIn.nextLine();
+    if(userCont.toUpperCase().equals("Y")){
+      return true;
     }
     else{
-      userCont = false;
+      return false;
     }
-    return userCont;
   }
 }

@@ -41,10 +41,10 @@ class FleaMarket{
   }
 
   public void itemPurchase(){//creates a new item in orderList and adds to orderTotal and orderTotalNet
-    String name = InputOutput.getName();
-    double price = InputOutput.getPrice();
-    int quant = InputOutput.getQuant();
-    orderList.add(new Item(name, price, quant));
+    String booth = InputOutput.getBooth(System.in);
+    double price = InputOutput.getPrice(System.in);
+    int quant = InputOutput.getQuant(System.in);
+    orderList.add(new Item(booth, price, quant));
     Item item = orderList.get(orderList.size() - 1);
     orderTotal += (item.getItemTaxedPrice()*quant);
     orderTotalNet += (price * quant);
@@ -61,23 +61,4 @@ class FleaMarket{
     result += ("\n                                   Total Sum is  - $" + dayOrderSum);
     return result;
   }
-
-  /*public String getName(){//collects user data
-    Scanner userIn = new Scanner(System.in);
-    System.out.println("ENTER ITEM NAME");
-    String userName = userIn.nextLine();
-    return userName;
-  }
-  public double getPrice(){//collects user data
-    Scanner userIn = new Scanner(System.in);
-    System.out.println("ENTER ITEM PRICE");
-    double userPrice = Double.parseDouble(userIn.nextLine());
-    return userPrice;
-  }
-  public int getQuant(){//collects user data
-    Scanner userIn = new Scanner(System.in);
-    System.out.println("ENTER ITEM QUANTITY");
-    int userQuant = Integer.parseInt(userIn.nextLine());
-    return userQuant;
-  }*/
 }
